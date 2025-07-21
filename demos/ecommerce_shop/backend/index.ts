@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
+import fs from "fs";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
 import productRoutes from "./routes/product";
@@ -51,7 +52,16 @@ app.use(cookieParser(process.env.DATABASE_ENCRYPTION_KEY));
 // Serve static files from the public directory
 const publicPath = path.join(__dirname, "public");
 console.log("Serving static files from:", publicPath);
+console.log("Public directory exists:", fs.existsSync(publicPath));
 app.use("/public", express.static(publicPath));
+
+// Add middleware to log all requests to /public
+app.use("/public", (req, res, next) => {
+  console.log("Static file request:", req.url);
+  console.log("Full path would be:", path.join(publicPath, req.url));
+  console.log("File exists:", fs.existsSync(path.join(publicPath, req.url)));
+  next();
+});
 
 app.use(errorHandler);
 app.use(logger);
