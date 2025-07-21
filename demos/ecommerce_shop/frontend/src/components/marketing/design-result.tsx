@@ -27,7 +27,7 @@ export const DesignResult = ({
           objectFit: "contain",
           bgcolor: "#302e35",
         }}
-        image={design.thumbnail?.url ?? selectedCampaignProduct?.imageUrl}
+        image={design.thumbnail?.url || selectedCampaignProduct?.imageUrl}
         alt="autofill-image"
       />
       <Box display="flex" alignItems="center">

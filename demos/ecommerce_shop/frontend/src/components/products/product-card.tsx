@@ -32,6 +32,8 @@ export const ProductCard = ({
         sx={{
           borderRadius: 3,
           marginBottom: 2,
+          objectFit: "cover",
+          height: 200,
         }}
       />
       {product.canvaDesign?.designEditUrl && (

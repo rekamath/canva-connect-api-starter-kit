@@ -221,7 +221,11 @@ export const ReturnNavPage = (): JSX.Element => {
             ...fetchDesignResult.design,
             // Updating the design thumbnail to match the downloadedExport since thumbnails
             // are not updated immediately.
-            thumbnail: { url: downloadedExportUrl, width: 1000, height: 1000 },
+            thumbnail: { 
+              url: downloadedExportUrl, 
+              width: fetchDesignResult.design.thumbnail?.width || 1000, 
+              height: fetchDesignResult.design.thumbnail?.height || 1000 
+            },
           });
           addAlert({
             title: `Edits to ${fetchDesignResult.design.title ?? "Campaign"} were saved!`,
@@ -270,7 +274,11 @@ export const ReturnNavPage = (): JSX.Element => {
                     // Updating the design thumbnail to match the downloadedExport if the current design matches
                     // the fetched design the user returned from since thumbnails are not updated immediately.
                     result.value.design.id === fetchDesignResult.design.id
-                      ? { url: downloadedExportUrl, width: 1000, height: 1000 }
+                      ? { 
+                          url: downloadedExportUrl, 
+                          width: result.value.design.thumbnail?.width || 1000, 
+                          height: result.value.design.thumbnail?.height || 1000 
+                        }
                       : result.value.design.thumbnail,
                 },
               ]);
