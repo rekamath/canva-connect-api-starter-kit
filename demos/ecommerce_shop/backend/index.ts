@@ -47,7 +47,11 @@ app.use(bodyParser.json());
 // https://github.com/expressjs/cookie-parser?tab=readme-ov-file#cookieparsersecret-options
 // In production, use a separate secret from the database encryption key!
 app.use(cookieParser(process.env.DATABASE_ENCRYPTION_KEY));
-app.use("/public", express.static(path.join(__dirname, "public")));
+
+// Serve static files from the public directory
+const publicPath = path.join(__dirname, "public");
+console.log("Serving static files from:", publicPath);
+app.use("/public", express.static(publicPath));
 
 app.use(errorHandler);
 app.use(logger);
