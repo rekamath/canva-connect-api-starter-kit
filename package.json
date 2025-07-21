@@ -26,6 +26,7 @@
   "scripts": {
     "generate": "cd client && npm run generate",
     "start": "echo 'Please specify which demo to run:\\n  npm run demo:ecommerce\\n  npm run demo:playground\\n  npm run demo:realty'",
+    "build": "cd demos/ecommerce_shop/frontend && npm run build",
     "demo:ecommerce": "cd demos/ecommerce_shop && npm start",
     "demo:playground": "cd demos/playground && npm start",
     "demo:realty": "cd demos/realty && npm start"
